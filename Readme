@@ -1,0 +1,118 @@
+# Booth Multiplier (Verilog)
+
+## 📌 Overview
+
+This project implements a **Booth Multiplier** using Verilog for signed binary multiplication. Booth’s algorithm efficiently multiplies two signed numbers in 2’s complement form by reducing the number of addition and subtraction operations.
+
+---
+
+## ⚙️ Features
+
+* Supports **signed multiplication**
+* Implements **Booth Algorithm**
+* Uses **sequential logic (clock-based design)**
+* Includes **testbench for verification**
+* Handles both **positive and negative numbers**
+
+---
+
+## 🧠 Concept Used
+
+Booth Algorithm uses:
+
+* Multiplier bit (`Q0`)
+* Previous bit (`Q-1`)
+* Accumulator (`A`)
+* Multiplicand (`M`)
+
+### Decision Table
+
+| Q0 Q-1 | Operation    |
+| ------ | ------------ |
+| 00     | No operation |
+| 01     | A = A + M    |
+| 10     | A = A - M    |
+| 11     | No operation |
+
+After each step, an **Arithmetic Right Shift** is performed.
+
+---
+
+## 📥 Inputs & Outputs
+
+### Inputs
+
+* `clk` → Clock signal
+* `rst` → Reset signal
+* `start` → Start signal
+* `x` → Multiplicand (signed)
+* `y` → Multiplier (signed)
+
+### Outputs
+
+* `z` → Result (signed)
+* `valid` → Indicates completion
+
+---
+
+## 📊 Example
+
+| x  | y | Result (Decimal) | Result (Binary) |
+| -- | - | ---------------- | --------------- |
+| 5  | 6 | 30               | 00011110        |
+| -7 | 3 | -21              | 11101011        |
+
+---
+
+## 🧪 Testbench
+
+The testbench verifies:
+
+* Positive × Positive multiplication
+* Negative × Positive multiplication
+
+### Sample Test Cases
+
+```verilog
+x = 5;  y = 6;   // Output = 30
+x = -7; y = 3;   // Output = -21
+```
+
+---
+
+## ⏱️ Working
+
+* The design is **sequential**, so it takes multiple clock cycles.
+* For an **n-bit multiplier**, it takes **n clock cycles**.
+* Output is valid only when `valid = 1`.
+
+---
+
+## ⚠️ Important Notes
+
+* Output width = **2 × input width**
+* Use **Signed Decimal Radix** in waveform for correct interpretation
+* Intermediate waveform values before `valid = 1` should be ignored
+
+---
+
+## 🚀 Future Improvements
+
+* Parameterized design (support for n-bit inputs)
+* FSM-based implementation
+* Pipelined multiplier for faster performance
+
+---
+
+## 🧑‍💻 Author
+
+Developed as part of learning **Digital Design & Verilog HDL**
+
+---
+
+## 📚 References
+
+* Digital Design textbooks
+* Booth Multiplication Algorithm
+
+---
